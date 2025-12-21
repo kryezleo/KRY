@@ -1,69 +1,66 @@
-# ============================================================
-# Aufgabe 5(a)
-# Rechenweg für: x^2 ≡ 57 (mod 61)
-# ============================================================
+# x^2 ≡ n (mod p)  with p an odd prime
+p = 97
+n = 27
 
-p = 61
-n = 57
+print(f"Gesucht: x^2 ≡ {n} (mod {p})\n")
 
-print("Gesucht: x^2 ≡ 57 (mod 61)\n")
-
-# 1) Legendre-Test
+# 1) Legendre symbol test
 ls = pow(n, (p - 1) // 2, p)
 print("1) Legendre-Symbol:")
-print(f"   57^30 mod 61 = {ls}")
+print(f"   {n}^({(p-1)//2}) mod {p} = {ls}")
+if ls != 1:
+    raise ValueError("n ist kein quadratischer Rest mod p (keine Lösung).")
 print("   ⇒ quadratischer Rest\n")
 
-# 2) Fallprüfung
-print("2) Fallprüfung:")
-print(f"   61 ≡ {p % 4} (mod 4) ⇒ Tonelli–Shanks\n")
+# Special case p % 4 == 3
+if p % 4 == 3:
+    x = pow(n, (p + 1) // 4, p)
+    print("p ≡ 3 (mod 4) ⇒ einfache Formel")
+    print("Lösungen:", x, p - x)
+    exit()
 
-# 3) Zerlegung von p-1
-p_minus_1 = p - 1
-q = p_minus_1
+# 2) Factor p-1 = q * 2^s with q odd
+q = p - 1
 s = 0
 while q % 2 == 0:
     q //= 2
     s += 1
 
-print("3) Zerlegung von p−1:")
-print(f"   p−1 = {p_minus_1}")
-print(f"       = {q} · 2^{s}")
+print("2) Zerlegung:")
+print(f"   p-1 = {p-1} = {q} * 2^{s}\n")
 
-# 🔹 zusätzliche Zerlegung von q
-print(f"       = (3 · 5) · 2^{s}")
-print(f"       = 2^{s} · 3 · 5")
-print(f"   ⇒ q = {q} (ungerade), s = {s}\n")
+# 3) Find a quadratic non-residue z
+z = 2
+while pow(z, (p - 1) // 2, p) != p - 1:
+    z += 1
+print("3) Nichtquadratischer Rest:")
+print(f"   z = {z}\n")
 
-# 4) Nichtquadratischer Rest
-print("4) Suche Nicht-Quadratischen Rest z:")
-print("   2^30 ≡ −1 (mod 61)")
-print("   ⇒ z = 2\n")
-
-# 5) Initialisierung
-c = pow(2, q, p)
+# 4) Tonelli–Shanks init
+c = pow(z, q, p)
 x = pow(n, (q + 1) // 2, p)
 t = pow(n, q, p)
 m = s
 
-print("5) Initialisierung:")
-print(f"   c = 2^{q} mod 61 = {c}")
-print(f"   x = 57^{(q+1)//2} mod 61 = {x}")
-print(f"   t = 57^{q} mod 61 = {t}")
-print(f"   m = s = {m}\n")
+print("4) Initialisierung:")
+print(f"   c = {c}, x = {x}, t = {t}, m = {m}\n")
 
-# 6) Iteration
-print("6) Iteration:")
-print("   t = −1 ⇒ t² = 1 ⇒ i = 1")
-b = c
-x = (x * b) % p
-t = (t * b * b) % p
+# 5) Loop
+while t != 1:
+    # find smallest i (0 < i < m) s.t. t^(2^i) = 1
+    i = 1
+    t2i = (t * t) % p
+    while i < m and t2i != 1:
+        t2i = (t2i * t2i) % p
+        i += 1
 
-print(f"   b = {b}")
-print(f"   x = 22 · 11 mod 61 = {x}")
-print("   t = 1 ⇒ Abbruch\n")
+    # b = c^(2^(m-i-1))
+    b = pow(c, 1 << (m - i - 1), p)
+    x = (x * b) % p
+    t = (t * b * b) % p
+    c = (b * b) % p
+    m = i
 
-# 7) Ergebnis
-print("7) Ergebnis:")
-print(f"   Lösungen: x ≡ {x} und x ≡ {p-x} (mod 61)")
-print(f"   Kontrolle: {x}² mod 61 = {(x*x)%p}, {(p-x)}² mod 61 = {((p-x)*(p-x))%p}")
+print("Ergebnis:")
+print(f"   Lösungen: x ≡ {x} und x ≡ {p-x} (mod {p})")
+print(f"   Kontrolle: {x}^2 mod {p} = {(x*x)%p}, {(p-x)}^2 mod {p} = {((p-x)*(p-x))%p}")
