@@ -3,9 +3,9 @@ from math import gcd
 # ======================================================
 # ✅ HIER ANPASSEN!
 # Trage hier deine Werte ein:
-a = 78   # der Koeffizient vor x  → von Aufgabe: 78x = 246 (mod 264)
-b = 246  # rechter Wert
-m = 264  # Modulus
+a = 1   # der Koeffizient vor x  → von Aufgabe: 78x = 246 (mod 264)
+b = 57  # rechter Wert
+m = 61  # Modulus
 # ======================================================
 
 

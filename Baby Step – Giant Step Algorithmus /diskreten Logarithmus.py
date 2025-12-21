@@ -86,9 +86,9 @@ def discrete_log_bsgs(g, h, p, order=None):
 # To adapt for a different instance, change g, h, p below.
 # -------------------------
 if __name__ == "__main__":
-    g = 17   # base (change me)
-    h = 42   # target (change me)
-    p = 61   # modulus (change me)
+    g = 3   # base (change me)
+    h = 57   # target (change me)
+    p = 113   # modulus (change me)
     # If p is prime and g is a generator, you can omit order or set order=p-1.
     x = discrete_log_bsgs(g, h, p)
     if x is None:

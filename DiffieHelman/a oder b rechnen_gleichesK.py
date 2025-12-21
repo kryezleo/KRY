@@ -54,6 +54,8 @@ print("Nachweis (Bézout-Gleichung):")
 print(f"  {known_value}*({s}) + {modulus}*({t}) = {known_value*s + modulus*t}")
 print(f"  => ggT({known_value}, {modulus}) = {gcd}\n")
 
+print("In Pari GP: lift(Mod(99, 466)^(-1)): 466 = p-1 / 99 = a oder b\n")
+
 if gcd != 1:
     raise ValueError("Keine Inverse vorhanden (ggT != 1)!")
 

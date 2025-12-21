@@ -3,7 +3,7 @@
 # ================================================
 
 # Kurvenparameter: y^2 = x^3 + a*x + b (mod p)
-p = 43          # Primzahl (z.B. 43)
+p = 43          # Primzahl (z.B. 43) oft auch GF(p)
 a = 22          # Parameter a (z.B. 22)
 b = 17          # Parameter b (z.B. 17)
 
