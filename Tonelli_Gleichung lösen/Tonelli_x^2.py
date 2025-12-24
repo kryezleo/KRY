@@ -1,6 +1,6 @@
 # x^2 ≡ n (mod p)  with p an odd prime
-p = 61
-n = 57
+p = 103
+n = 50
 
 print(f"Gesucht: x^2 ≡ {n} (mod {p})\n")
 

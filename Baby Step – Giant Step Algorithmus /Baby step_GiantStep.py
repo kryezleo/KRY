@@ -14,7 +14,7 @@
 import math
 
 # -------- Parameter HIER anpassen (Beispiel: Aufgabe 6) --------
-p = 43                  # Primzahl des Feldes
+p = 43                  # Primzahl des Feldes oft in GF(p)
 a = 22                  # Kurvenparameter a
 b = 17                  # Kurvenparameter b (eig. nicht direkt benötigt)
 P = (37, 20)            # Basispunkt

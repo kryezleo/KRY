@@ -10,8 +10,8 @@ from math import gcd
 # Beispiel aus deinem Bild:
 # x ≡ 7 (mod 18) vertikal unten anordnen
 # x ≡ 12 (mod 17) vertikal unten anordnen
-a_list = [7, 12]
-m_list = [18, 17]
+a_list = [30, 16]
+m_list = [97, 103]
 verbose = True
 # ------------------------------------------------------------
 
