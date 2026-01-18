@@ -216,6 +216,6 @@ def factor_with_quadratic_sieve(n: int, B: int = 50):
 
 if __name__ == "__main__":
     # kleines Beispiel
-    n = 737
+    n = 91
     factors = factor_with_quadratic_sieve(n, B=50)
     print(f"n = {n}, factors = {factors}")

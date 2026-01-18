@@ -5,14 +5,14 @@
 # ============================================
 
 # --- HIER ANPASSEN ---
-p = 49037
-a = 11784
-b = 29274
+p = 179
+a = 8
+b = 102
 
-P = (11181, 14848)   # Basispunkt / Generator
-n = 49363            # Ordnung von G (oder vorgegeben)
+P = (73, 60)   # Basispunkt / Generator
+n = 167            # Ordnung von G (oder vorgegeben)
 
-k = 17413            # Nonce
+k = 94            # Nonce
 # ---------------------
 
 def inv_mod(x, p):

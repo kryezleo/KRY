@@ -4,16 +4,16 @@
 # ============================================================
 
 # -------------------- HIER ANPASSEN -------------------------
-p = 49037
-a = 11784
-b = 29274
+p = 179
+a = 8
+b = 102
 
-P = (11181, 14848)   # Generator
-n = 49363            # Ordnung von P (falls vorgegeben) ODER None
+P = (73, 60)   # Generator
+n = 167            # Ordnung von P (falls vorgegeben) ODER None
 
-d  = 8249            # privater Schlüssel (aus Aufgabe)
-k  = 17413           # Nonce (aus Aufgabe)
-hm = 12345           # h(m) als Integer (aus Aufgabe)
+d  = 37            # privater Schlüssel (aus Aufgabe)
+k  = 94           # Nonce (aus Aufgabe)
+hm = 121           # h(m) als Integer (aus Aufgabe)
 # ------------------------------------------------------------
 
 verbose = True

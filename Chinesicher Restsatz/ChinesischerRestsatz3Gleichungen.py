@@ -9,8 +9,8 @@ from math import gcd
 # x ≡ 2  (mod 3) vertikal unten anordnen
 # x ≡ 3  (mod 5) vertikal unten anordnen
 # x ≡ 2  (mod 7) vertikal unten anordnen
-a_list = [2, 3, 2]
-m_list = [3, 5, 7]
+a_list = [3, 8, 5]
+m_list = [9, 11, 15]
 verbose = True
 # ------------------------------------------------------------
 
