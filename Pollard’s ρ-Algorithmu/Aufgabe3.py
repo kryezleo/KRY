@@ -1,9 +1,9 @@
 # Pollard's ρ (Floyd) – universelles Skript
 # -------------------------------------------------------------
 # HIER ANPASSEN:
-n = 6649  # <- Zu faktorierende Zahl (ändern)
-x0 = 2  # <- Startwert x0 (ändern)
-a = 5  # <- f(x) = x^2 + a (ändern) modulo n ist integriert
+n = 59153  # <- Zu faktorierende Zahl (ändern)
+x0 = 24712  # <- Startwert x0 (ändern)
+a = 1  # <- f(x) = x^2 + a (ändern) modulo n ist integriert
 max_iters = 10000  # <- Sicherheitslimit Iterationen (ändern)
 verbose = True  # <- True = Zwischenschritte mitdrucken
 

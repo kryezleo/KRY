@@ -141,18 +141,27 @@ class EllipticCurveFp:
                 print(f"  inv({den}) mod {p} = {den_inv}")
                 print(f"  => λ = {num} * {den_inv} mod {p} = {lam}")
         else:
-            # Punktverdopplung: λ = (3x1^2 + a) / (2y1) mod p
-            num = (3 * P.x * P.x + self.a) % p
-            den = (2 * P.y) % p
-            den_inv = inv_mod(den, p)
-            lam = (num * den_inv) % p
-            if show_steps:
-                print("\nFall: P = Q (Verdopplung)")
-                print("Formel: λ = (3x1^2 + a) / (2y1)  (mod p)")
-                print(f"λ = (3*{P.x}^2 + {self.a}) / (2*{P.y}) mod {p}")
-                print(f"  = {num} / {den} mod {p}")
-                print(f"  inv({den}) mod {p} = {den_inv}")
-                print(f"  => λ = {num} * {den_inv} mod {p} = {lam}")
+                # Punktverdopplung: λ = (3x1^2 + a) / (2y1) mod p
+                num = (3 * P.x * P.x + self.a) % p
+                den = (2 * P.y) % p
+
+                # 🔹 Sonderfall: y = 0  →  2P = O
+                if den == 0:
+                    if show_steps:
+                        print("\nSonderfall Verdopplung:")
+                        print("2*y1 ≡ 0 (mod p) → Tangente vertikal → 2P = O")
+                    return O
+
+                den_inv = inv_mod(den, p)
+                lam = (num * den_inv) % p
+
+                if show_steps:
+                    print("\nFall: P = Q (Verdopplung)")
+                    print("Formel: λ = (3x1^2 + a) / (2y1)  (mod p)")
+                    print(f"λ = (3*{P.x}^2 + {self.a}) / (2*{P.y}) mod {p}")
+                    print(f"  = {num} / {den} mod {p}")
+                    print(f"  inv({den}) mod {p} = {den_inv}")
+                    print(f"  => λ = {num} * {den_inv} mod {p} = {lam}")
 
         # x3 = λ^2 - x1 - x2
         x3 = (lam * lam - P.x - Q.x) % p
@@ -295,7 +304,8 @@ def main():
         print("\nWähle:")
         print("  1) P - Q berechnen")
         print("  2) 2P berechnen")
-        print("  3) Programm beenden")
+        print("  3) P + Q berechnen")  # <-- NEU
+        print("  4) Programm beenden")  # <-- war 3)
         choice = input("> ").strip()
 
         if choice == "1":
@@ -328,7 +338,23 @@ def main():
             R = E.add(P, P, show_steps=True)
             print(f"\n✅ Ergebnis: 2P = {R}")
 
-        elif choice == "3":
+        elif choice == "3":  # <-- NEU: P + Q
+            try:
+                P = read_point("P", p)
+                Q = read_point("Q", p)
+            except ValueError as e:
+                print(f"❌ {e}")
+                continue
+
+            if not E.is_on_curve(P) or not E.is_on_curve(Q):
+                print("❌ Achtung: Mindestens ein Punkt liegt nicht auf der Kurve!")
+                print(f"   P on curve? {E.is_on_curve(P)} | Q on curve? {E.is_on_curve(Q)}")
+                continue
+
+            R = E.add(P, Q, show_steps=True)
+            print(f"\n✅ Ergebnis: P + Q = {R}")
+
+        elif choice == "4":  # <-- war 3)
             print("Bye 👋")
             break
         else:

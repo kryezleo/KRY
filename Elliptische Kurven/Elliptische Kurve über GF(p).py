@@ -12,9 +12,9 @@ Das Skript:
 from typing import List, Tuple, Optional
 
 # === Parameter (anpassen für jede Aufgabe) ===
-p = 43   # Primzahl für GF(p)
-a = 22
-b = 17  # Kurve: y^2 = x^3 + a*x + b  (mod p)
+p = 11   # Primzahl für GF(p)
+a = 4
+b = 1  # Kurve: y^2 = x^3 + a*x + b  (mod p)
 
 # === Hilfsfunktionen ===
 Point = Optional[Tuple[int,int]]  # None repräsentiert den Punkt im Unendlichen O

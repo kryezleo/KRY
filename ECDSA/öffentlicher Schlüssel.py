@@ -5,15 +5,15 @@
 
 # --------- HIER ANPASSEN ---------------------
 # Kurve: y^2 = x^3 + a*x + b (mod p), modulo oft in GF(p)
-p = 179
-a = 8
-b = 102
+p = 49037
+a = 11784
+b = 29274
 
 # Basispunkt (Generator)
-P = (73, 60)
+P = (11181, 14848)
 
 # Geheimer Schlüssel
-d = 37
+d = 8249
 # --------------------------------------------
 
 
